@@ -10,6 +10,42 @@
 #define NAV  3
 
 / {
+    macros {
+        // Universal Mac Mic Mute: Ctrl + Opt + Shift + Cmd + M        
+        mac_mic_mute: mac_mic_mute {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LC(LA(LS(LG(M))))>; 
+        };
+
+        // Types ° (Option+Shift+8)
+        deg: deg {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <30>;
+            tap-ms = <40>;
+            bindings = <&kp LA(LS(N8));
+        };
+
+        // Types °C (Option+Shift+8, then Shift+C)
+        deg_c: deg_c {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <30>;
+            tap-ms = <40>;
+            bindings = <&kp LA(LS(N8)) &kp LS(C)>;
+        };
+
+        // Types °F (Option+Shift+8, then Shift+F)
+        deg_f: deg_f {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <30>;
+            tap-ms = <40>;
+            bindings = <&kp LA(LS(N8)) &kp LS(F)>;
+        };
+    };
+
     behaviors {
         // Left-hand Home Row Mods
         hm_l: homerow_mods_left {
@@ -58,10 +94,10 @@
         base {
             display-name = "BASE";
             bindings = <
-                &kp TAB     &kp Q         &kp W         &kp E       &kp R       &kp T           &kp Y       &kp U       &kp I       &kp O         &kp P             &kp SQT
-                &caps_word  &hm_l LCTRL A &hm_l LALT S  &kp D       &lt NAV F   &kp G           &kp H       &kp J       &kp K       &hm_r RALT L  &hm_r RCTRL SEMI  &kp ENTER
-                &sk LSHFT   &kp Z         &kp X         &kp C       &kp V       &kp B           &kp N       &kp M       &kp COMMA   &kp DOT       &kp FSLH          &sk LSHFT
-                                          &mkp MCLK     &sl SYM     &mt_thumb LGUI SPACE        &mt_thumb RGUI BSPC     &sl NUM     &mkp LCLK           
+                &kp TAB     &kp Q         &kp W         &kp E       &kp R       &kp T                   &kp Y       &kp U       &kp I       &kp O         &kp P             &kp SQT
+                &caps_word  &hm_l LCTRL A &hm_l LALT S  &kp D       &lt NAV F   &kp G                   &kp H       &kp J       &kp K       &hm_r RALT L  &hm_r RCTRL SEMI  &kp ENTER
+                &sk LSHFT   &kp Z         &kp X         &kp C       &kp V       &kp B                   &kp N       &kp M       &kp COMMA   &kp DOT       &kp FSLH          &sk LSHFT
+                                          &mkp mac_mic_mute     &sl SYM     &mt_thumb LGUI SPACE        &mt_thumb RGUI BSPC     &sl NUM     &kp LC(SPACE)           
             >;
         };
 
@@ -80,7 +116,7 @@
             bindings = <
                 &kp ESC      &kp C_AC_DESKTOP_SHOW_ALL_WINDOWS      &kp C_PREV  &kp C_PP      &kp C_NEXT    &none       &none   &kp BSLH   &kp PIPE   &kp TILDE  &kp GRAVE  &trans
                 &kp CAPS     &kp C_AC_DESKTOP_SHOW_ALL_APPLICATIONS &kp C_MUTE  &kp C_VOL_DN  &kp C_VOL_UP  &none       &none   &kp LBKT   &kp RBKT   &kp LBRC   &kp RBRC   &trans
-                &sk LS(LGUI) &none                                  &none       &kp C_BRI_DN  &kp C_BRI_UP  &none       &none   &none      &none      &none      &none      &sk LS(LGUI)
+                &sk LS(LGUI) &none                                  &none       &kp C_BRI_DN  &kp C_BRI_UP  &none       &none   &deg       &deg_c     &deg_f     &none      &sk LS(LGUI)
                                                                     &none       &trans        &none                     &none   &trans     &none           
             >;
         };
@@ -89,9 +125,9 @@
             display-name = "NAV";
             bindings = <
                 &bt BT_SEL 2    &bt BT_SEL 1 &bt BT_SEL 0 &bt BT_SEL 3 &none  &none         &kp LG(GRAVE) &kp LS(LG(LBKT)) &kp UP     &kp LS(LG(RBKT)) &kp LG(RBKT) &none
-                &none           &kp LCTRL    &kp LALT     &kp LSHFT    &trans &none         &mkp LCLK     &kp LEFT         &kp DOWN   &kp RIGHT        &kp LG(LBKT) &trans
+                &none           &kp LCTRL    &kp LALT     &kp LSHFT    &trans &none         &none         &kp LEFT         &kp DOWN   &kp RIGHT        &kp LG(LBKT) &trans
                 &kp LSHFT       &bt BT_CLR   &none        &none        &none  &none         &mkp RCLK     &none            &none      &none            &none        &none
-                                             &studio_unlock &mkp LCLK  &trans               &kp DEL       &mkp RCLK        &mkp LCLK           
+                                             &studio_unlock &none  &trans                   &kp DEL       &none        &none           
             >;
         };
 
