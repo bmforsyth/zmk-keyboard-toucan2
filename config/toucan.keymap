@@ -91,7 +91,7 @@
                 &bt BT_SEL 2	&bt BT_SEL 1	&bt BT_SEL 0	&bt BT_SEL 3	&none	&none		&kp LG(GRAVE)	&kp LS(LG(LBKT))	&kp UP	&kp LS(LG(RBKT))	&kp LG(RBKT)	&none
                 &none	&kp LCTRL	&kp LALT	&kp LSHFT	&trans	&none		                    &mkp LCLK	&kp LEFT	&kp DOWN	&kp RIGHT	&kp LG(LBKT)	&trans
                 &kp LSHFT	&bt BT_CLR	&none	&none	&none	&none		                        &mkp RCLK	&none	&none	&none	&none	&none
-			    &mkp MCLK	&mkp LCLK	&trans		                                                &kp DEL	&mkp RCLK	&mkp LCLK			
+			    &studio_unlock	&mkp LCLK	&trans		                                                &kp DEL	&mkp RCLK	&mkp LCLK			
             >;
         };
 
